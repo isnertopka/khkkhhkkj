@@ -1,0 +1,109 @@
+<a href="https://www.amazon.pl/"  style="color: rgb(0, 113, 133);">Back to Amazon</a>
+
+<h1> Nike Black Running Shoes</h1>
+
+<div style="color:rgb(0, 118, 0); padding-bottom: 10px;">$39 - in stock.</div>
+
+<div style="padding-bottom: 15px;">
+
+  Free delivery tomorrow.
+
+</div>
+
+<button class="Add" href="">Add to Cart</button>
+<button class="buy">Buy now</button>
+
+<style>
+
+  .Add
+  {
+    background-color: rgb(255, 216, 20);
+    border: none;
+    border-radius: 22px;
+    font-size: 16px;
+    width: 120px;
+    height: 30px;
+    cursor: pointer;
+  }
+</style>
+
+<style>
+  .buy
+  {
+    background-color: rgb(255, 164, 28);
+    border-radius: 22px;
+    border: none;
+    font-size: 17px;
+    width: 120px;
+    height: 30px;
+    cursor: pointer;
+  
+  }
+
+  .buy:hover {
+    background-color: rgb(255, 164, 28);
+    color:whitesmoke;
+    opacity: 0.7;
+  }
+  .Add:hover{
+    background-color: rgb(255, 180, 30);
+    color:white;
+    opacity: 4.0;
+    box-shadow: 2px;
+  }
+  body{
+    background-color: lightblue;
+  }
+  .przy{
+    border-style: solid;
+    border-color: black;
+    border-width: 10px;
+    background-color: white;
+    width: 200px;
+    height: 100px;
+    padding-bottom:10px ;
+    margin-top: 30px
+    
+    
+  }
+</style>
+
+<button class="przy"></button>
+
+<script>
+const buttons = document.getElementsByClassName("Add");
+
+for (let i = 0; i < buttons.length; i++) {
+  buttons[i].addEventListener("click", () => {
+    // Check if the browser supports notifications
+    if (!"Notification" in window) {
+      alert("This browser does not support notifications.");
+    } else if (Notification.permission === "granted") {
+      // If the user has already granted permission, show the notification
+      const notification = new Notification("Notification", {
+        body: "Product sold!",
+        icon: "icon.png",
+      });
+      // Position the notification next to the button
+      notification.style.top = buttons[i].offsetTop + "px";
+      notification.style.left = buttons[i].offsetLeft + "px";
+    } else if (Notification.permission !== "denied") {
+      // If the user hasn't granted or denied permission, ask for permission
+      Notification.requestPermission().then((permission) => {
+        if (permission === "granted") {
+          // If the user grants permission, show the notification
+          const notification = new Notification("Notification", {
+            body: "Product sold!",
+            icon: "icon.png",
+          });
+          // Position the notification next to the button
+          notification.style.top = buttons[i].offsetTop + "px";
+          notification.style.left = buttons[i].offsetLeft + "px";
+        }
+      });
+    }
+  });
+}
+</script>
+
+
